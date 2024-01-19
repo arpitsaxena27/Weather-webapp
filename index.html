@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+            <meta charset="UTF-8" />
+            <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1.0"
+            />
+            <title>The Weather</title>
+      </head>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="style.css" />
+
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      />
+      <body
+            id="body"
+            class="overflow-scroll overflow-x-hidden w-screen h-screen flex flex-col items-center justify-between mb-20"
+      >
+            <video
+                  id="video-background1"
+                  src="fewclouds.mp4"
+                  muted
+                  loop
+                  autoplay
+            ></video>
+            <video
+                  id="video-background2"
+                  src="fewclouds.mp4"
+                  class="hide"
+                  muted
+                  loop
+                  autoplay
+            ></video>
+            <div
+                  id="content"
+                  class="flex flex-col lg:flex-row md:gap-[50px] lg:gap-0 gap-[70px] flex-wrap"
+            >
+                  <div
+                        id="5day"
+                        class="flex flex-col h-[680px] justify-between gap-0 lg:gap-[100px] w-screen lg:w-2/3"
+                  >
+                        <div class="flex justify-between">
+                              <h1 id="head" class="text-3xl m-5 head">
+                                    The&nbsp;Weather
+                              </h1>
+                              <div
+                                    id="cont"
+                                    class="flex justify-between h-40 mr-8 flex-col mt-5 items-start flex-wrap"
+                              >
+                                    <div
+                                          id="search"
+                                          class="mr-5 w-auto flex items-center bg-transparent border-[#7eb7f5] border-[1px] h-7 pl-[1px] rounded-md"
+                                    >
+                                          <input
+                                                type="text"
+                                                name="text"
+                                                id="textInput"
+                                                placeholder="enter city name"
+                                                class="px-1 w-44 md:w-80 lg:w-96 h-5 mx-1 outline-none text-sm"
+                                          />
+                                          <span
+                                                class="border-none material-symbols-outlined bg-[#7eb7f5] rounded-r-md py-[1px] ml-1"
+                                          >
+                                                search
+                                          </span>
+                                    </div>
+                                    <span
+                                          id="city"
+                                          class="text-5xl md:text-5xl lg:text-5xl font-bold pb-20 md:pb-10 lg:pb-10 brak leading-[42px] w-80 md:w-96 lg:w-96 break-words text-transition"
+                                    >
+                                          City name
+                                    </span>
+                              </div>
+                        </div>
+                        <div>
+                              <div class="flex flex-col animated-div">
+                                    <div
+                                          class="current flex justify-between items-center"
+                                    >
+                                          <div class="flex">
+                                                <h1
+                                                      id="temp"
+                                                      class="text-8xl ml-5"
+                                                >
+                                                      16.2
+                                                </h1>
+                                                <p class="text-4xl font-bold">
+                                                      o
+                                                </p>
+                                          </div>
+                                          <div
+                                                class="flex flex-col items-center"
+                                          >
+                                                <div
+                                                      id="time"
+                                                      class="text-4xl font-bold"
+                                                >
+                                                      00:00
+                                                </div>
+                                                <div
+                                                      id="date"
+                                                      class="text-2xl font-bold"
+                                                >
+                                                      01-11-2023
+                                                </div>
+                                          </div>
+                                          <div class="mr-7">
+                                                <img
+                                                      class="w-28 h-28"
+                                                      src="https://cdn-icons-png.flaticon.com/128/1163/1163657.png"
+                                                      alt="a"
+                                                />
+                                                <p id="#wdes"></p>
+                                          </div>
+                                    </div>
+                                    <div
+                                          id="gra"
+                                          class="card gra w-auto h-auto py-4 px-[40px] rounded-xl m-5 mb-0 flex justify-evenly gap-10 items-center rounded-b-none flex-wrap lg:flex-nowrap scroll-auto"
+                                    >
+                                          <div
+                                                id="wcard"
+                                                class="cards h-24 w-24 rounded-lg bg-opacity-0-70"
+                                          >
+                                                <div class="cd">
+                                                      <p></p>
+                                                      <div>
+                                                            <img
+                                                                  class="w-14"
+                                                                  src="https://openweathermap.org/img/wn/@2x.png "
+                                                                  alt=""
+                                                            />
+                                                            <p
+                                                                  class="m-5 text-[12px]"
+                                                            >
+                                                                  Loading...
+                                                            </p>
+                                                      </div>
+                                                      <p></p>
+                                                </div>
+                                          </div>
+                                          <div
+                                                id="wcard1"
+                                                class="cards h-24 w-24 rounded-lg bg-opacity-0-70"
+                                          >
+                                                <div class="cd">
+                                                      <p></p>
+                                                      <div>
+                                                            <img
+                                                                  src="https://openweathermap.org/img/wn/@2x.png "
+                                                                  alt=""
+                                                            />
+                                                            <p
+                                                                  class="m-5 text-[12px]"
+                                                            >
+                                                                  Loading...
+                                                            </p>
+                                                      </div>
+                                                      <p></p>
+                                                </div>
+                                          </div>
+                                          <div
+                                                id="wcard2"
+                                                class="cards h-24 w-24 rounded-lg bg-opacity-0-70"
+                                          >
+                                                <div class="cd">
+                                                      <p></p>
+                                                      <div>
+                                                            <img
+                                                                  src="https://openweathermap.org/img/wn/@2x.png "
+                                                                  alt=""
+                                                            />
+                                                            <p
+                                                                  class="m-5 text-[12px]"
+                                                            >
+                                                                  Loading...
+                                                            </p>
+                                                      </div>
+                                                      <p></p>
+                                                </div>
+                                          </div>
+                                          <div
+                                                id="wcard3"
+                                                class="cards h-24 w-24 rounded-lg bg-opacity-0-70"
+                                          >
+                                                <div class="cd">
+                                                      <p></p>
+                                                      <div>
+                                                            <img
+                                                                  src="https://openweathermap.org/img/wn/@2x.png "
+                                                                  alt=""
+                                                            />
+                                                            <p
+                                                                  class="m-5 text-[12px]"
+                                                            >
+                                                                  Loading...
+                                                            </p>
+                                                      </div>
+                                                      <p></p>
+                                                </div>
+                                          </div>
+                                          <div
+                                                id="wcard4"
+                                                class="cards h-24 w-24 rounded-lg bg-opacity-0-70"
+                                          >
+                                                <div class="cd">
+                                                      <p></p>
+                                                      <div>
+                                                            <img
+                                                                  src="https://openweathermap.org/img/wn/@2x.png "
+                                                                  alt=""
+                                                            />
+                                                            <p
+                                                                  class="m-5 text-[12px]"
+                                                            >
+                                                                  Loading...
+                                                            </p>
+                                                      </div>
+                                                      <p></p>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                              <div class="h-[120px]"></div>
+                        </div>
+                  </div>
+                  <div
+                        id="gra1"
+                        class="gra1 lg:w-1/3 h-auto px-[40px] m-5 lg:m-0 rounded-xl lg:rounded-none"
+                  >
+                        <h1
+                              id="th"
+                              class="flex justify-center items-center lg:text-3xl md:text-2xl text-xl ml-10 m-3 font-bold mb-6 lg:block fadeanimation"
+                        >
+                              Today's Highlights
+                        </h1>
+                        <div
+                              class="flex flex-row flex-wrap gap-7 items-center justify-around"
+                        >
+                              <div
+                                    id="detail1"
+                                    class="scards lg:w-[44%] h-36 w-36 bg-opacity-0-70 rounded-xl"
+                              >
+                                    <h1
+                                          id="dethead1"
+                                          class="text-[14px] p-2 font-bold fadeanimation"
+                                    >
+                                          UV index
+                                    </h1>
+                                    <div class="flex justify-center">
+                                          <h1
+                                                id="uv"
+                                                class="text-3xl my-3 fadeanimation"
+                                          >
+                                                4
+                                          </h1>
+                                    </div>
+                                    <h1
+                                          id="uvdes"
+                                          class="ml-2 text-sm fadeanimation"
+                                    >
+                                          Moderate
+                                    </h1>
+                              </div>
+                              <div
+                                    id="detail2"
+                                    class="scards lg:w-[44%] h-36 w-36 bg-opacity-0-70 rounded-xl"
+                              >
+                                    <h1
+                                          id="dethead2"
+                                          class="text-[14px] p-2 font-bold fadeanimation"
+                                    >
+                                          Wind speed
+                                    </h1>
+                                    <div
+                                          class="flex justify-center items-center"
+                                    >
+                                          <h1
+                                                id="wspeed"
+                                                class="text-3xl my-3 fadeanimation"
+                                          >
+                                                31.7
+                                          </h1>
+                                    </div>
+
+                                    <h1
+                                          id="bdes"
+                                          class="ml-2 text-sm fadeanimation"
+                                    >
+                                          km/h
+                                    </h1>
+                              </div>
+
+                              <div
+                                    id="detail3"
+                                    class="scards lg:w-[44%] h-36 w-36 bg-opacity-0-70 rounded-xl"
+                              >
+                                    <h1
+                                          id="dethead3"
+                                          class="text-[14px] p-2 font-bold fadeanimation"
+                                    >
+                                          Humidity
+                                    </h1>
+                                    <div class="flex justify-center">
+                                          <h1
+                                                class="text-3xl my-3 flex flex-wrap"
+                                          >
+                                                <span
+                                                      id="hum"
+                                                      class="fadeanimation"
+                                                      >55.59</span
+                                                ><span
+                                                      id="sym"
+                                                      class="text-sm font-extrabold fadeanimation"
+                                                      >%</span
+                                                >
+                                          </h1>
+                                    </div>
+
+                                    <h1
+                                          id="bdes1"
+                                          class="ml-2 text-sm fadeanimation"
+                                    >
+                                          Moderate
+                                    </h1>
+                              </div>
+                              <div
+                                    id="detail4"
+                                    class="scards lg:w-[44%] h-36 w-36 bg-opacity-0-70 rounded-xl"
+                              >
+                                    <h1
+                                          id="dethead4"
+                                          class="text-[14px] p-2 font-bold fadeanimation"
+                                    >
+                                          Feels like
+                                    </h1>
+                                    <div
+                                          class="flex justify-center fadeanimation"
+                                    >
+                                          <h1 class="text-3xl my-3 flex">
+                                                <span id="feels">24</span
+                                                ><span
+                                                      id="sym1"
+                                                      class="text-sm font-bold my-[-5px]"
+                                                      >o</span
+                                                >
+                                          </h1>
+                                    </div>
+
+                                    <h1
+                                          id="bdes2"
+                                          class="ml-2 text-sm fadeanimation"
+                                    >
+                                          celsius
+                                    </h1>
+                              </div>
+                              <div
+                                    id="detail5"
+                                    class="scards lg:w-[44%] h-36 w-36 bg-opacity-0-70 rounded-xl"
+                              >
+                                    <h1
+                                          id="dethead5"
+                                          class="text-[14px] p-2 font-bold fadeanimation"
+                                    >
+                                          Air pressure
+                                    </h1>
+                                    <div class="flex justify-center">
+                                          <h1
+                                                id="pre"
+                                                class="text-3xl my-3 fadeanimation"
+                                          >
+                                                1005
+                                          </h1>
+                                    </div>
+
+                                    <h1
+                                          id="bdes3"
+                                          class="ml-2 text-sm fadeanimation"
+                                    >
+                                          mBar
+                                    </h1>
+                              </div>
+                              <div
+                                    id="detail6"
+                                    class="scards lg:w-[44%] h-36 w-36 bg-opacity-0-70 rounded-xl"
+                              >
+                                    <h1
+                                          id="dethead6"
+                                          class="text-[14px] p-2 font-bold text-transition fadeanimation"
+                                    >
+                                          Max/Min
+                                    </h1>
+                                    <div class="flex justify-center">
+                                          <h1
+                                                class="text-3xl my-3 flex flex-wrap fadeanimation"
+                                          >
+                                                <span id="max">24</span
+                                                ><span
+                                                      id="sym2"
+                                                      class="text-sm font-bold my-[-5px]"
+                                                      >o</span
+                                                ><span id="slash">/</span
+                                                ><span id="min">19</span
+                                                ><span
+                                                      id="sym3"
+                                                      class="text-sm font-bold my-[-5px]"
+                                                      >o</span
+                                                >
+                                          </h1>
+                                    </div>
+
+                                    <h1
+                                          id="bdes4"
+                                          class="ml-2 text-sm fadeanimation"
+                                    >
+                                          celsius
+                                    </h1>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div
+                  id="3rdbox"
+                  class="h-[100%] w-full mx-48 flex justify-center items-center"
+            >
+                  <div
+                        id="gra2"
+                        class="gra2 w-[70%] lg:h-[540px] h-[350px] flex flex-col justify-evenly items-center rounded-xl mx-5"
+                  >
+                        <div
+                              id="ssdiv"
+                              class="flex justify-between items-center w-[80%] mb-[-100px] px-8 lg:px-20"
+                        >
+                              <div
+                                    id="riseb"
+                                    class="lg:w-32 lg:h-16 w-24 h-12 rounded-lg scards bg-opacity-0-70"
+                              >
+                                    <p
+                                          id="hrise"
+                                          class="flex justify-center font-bold"
+                                    >
+                                          Sunrise
+                                    </p>
+                                    <p
+                                          id="sunrise"
+                                          class="flex justify-center items-center text-[14px] lg:text-2xl"
+                                    >
+                                          6:30 am
+                                    </p>
+                              </div>
+                              <div
+                                    id="setb"
+                                    class="lg:w-32 lg:h-16 w-24 h-12 rounded-lg scards bg-opacity-0-70"
+                              >
+                                    <p
+                                          id="hset"
+                                          class="flex justify-center font-bold"
+                                    >
+                                          Sunset
+                                    </p>
+                                    <p
+                                          id="sunset"
+                                          class="flex justify-center items-center text-[14px] lg:text-2xl"
+                                    >
+                                          5:50 pm
+                                    </p>
+                              </div>
+                        </div>
+                        <div
+                              id="container"
+                              class="w-[90%] lg:h-[200px] h-[150px] flex justify-center overflow-hidden"
+                        >
+                              <div
+                                    id="suncont1"
+                                    class="dayshad lg:w-[500px] lg:h-[500px] w-60 h-60 rounded-full mt-[89px] lg:mt-[63px] z-0"
+                              >
+                                    <div
+                                          id="sun"
+                                          class="lg:w-auto lg:h-[500px] w-60 h-60 rotate-[23deg] rounded-full flex justify-between items-center z-10"
+                                    >
+                                          <img
+                                                src="sun-48190.png"
+                                                class="h-20 w-20 ml-[-36px] lg:h-40 lg:w-40 lg:ml-[-73px]"
+                                                alt=""
+                                          />
+
+                                          <img
+                                                id="moon"
+                                                src="moon.png"
+                                                class="h-7 w-7 mr-[-14px] lg:h-14 lg:w-14 lg:mr-[-26px] z-20"
+                                                alt=""
+                                          />
+                                    </div>
+                              </div>
+                        </div>
+                        <div
+                              class="flex justify-evenly items-center w-full bg-opacity-0-70"
+                        >
+                              <div
+                                    id="dawnb"
+                                    class="lg:w-32 lg:h-16 w-24 h-12 rounded-lg scards"
+                              >
+                                    <p
+                                          id="hdawn"
+                                          class="flex justify-center font-bold"
+                                    >
+                                          Dawn
+                                    </p>
+                                    <p
+                                          id="dawn"
+                                          class="flex justify-center items-center text-[14px] lg:text-[18px]"
+                                    >
+                                          7:15 am
+                                    </p>
+                              </div>
+                              <div
+                                    id="noonb"
+                                    class="lg:w-32 lg:h-16 w-24 h-12 rounded-lg scards"
+                              >
+                                    <p
+                                          id="hnoon"
+                                          class="flex justify-center font-bold"
+                                    >
+                                          Solar noon
+                                    </p>
+                                    <p
+                                          id="noon"
+                                          class="flex justify-center items-center text-[14px] lg:text-[18px]"
+                                    >
+                                          1:00 pm
+                                    </p>
+                              </div>
+                              <div
+                                    id="duskb"
+                                    class="lg:w-32 lg:h-16 w-24 h-12 rounded-lg scards"
+                              >
+                                    <p
+                                          id="hdusk"
+                                          class="flex justify-center items-center font-bold"
+                                    >
+                                          Dusk
+                                    </p>
+                                    <p
+                                          id="dusk"
+                                          class="flex justify-center items-center text-[14px] lg:text-[18px]"
+                                    >
+                                          4:45 pm
+                                    </p>
+                              </div>
+                        </div>
+                        <div
+                              id="lengthb"
+                              class="scards w-[32%] rounded-lg p-2 flex justify-evenly items-center text-[14px] lg:text-xl bg-opacity-0-70"
+                        >
+                              <p id="lengthh" class="font-bold">
+                                    Length of day
+                              </p>
+                              <p id="length" class="">7h 47m</p>
+                        </div>
+                  </div>
+            </div>
+      </body>
+      <script src="script.js"></script>
+</html>
