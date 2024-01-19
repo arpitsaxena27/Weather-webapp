@@ -19,7 +19,7 @@ body.transition-enabled * {
       transition: color 0.1s ease-in-out;
 }
 body.transition-enabled * {
-      transition: all 1s ease-in-out;
+      transition: all 0.5s ease-in-out;
 }
 .text-transition {
       opacity: 1; /* Start with full opacity */
@@ -204,6 +204,7 @@ input {
       #wdes {
             word-wrap: break-word;
             width: 90px;
+            margin-top: 5px;
       }
       #wcard5,
       #wcard1,
