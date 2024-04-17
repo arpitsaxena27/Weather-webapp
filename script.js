@@ -14,7 +14,49 @@ let set;
 let trise;
 const weathercard = document.querySelector(".card");
 const currentweather = document.querySelector(".current");
-
+var span = document.getElementById("locbut");
+var sunbox = document.getElementById("3rdbox");
+var content = document.getElementById("content");
+var fpage = document.getElementById("fpage");
+var searchicon = document.getElementById("searchicon");
+searchicon.addEventListener("click", function () {
+      span.classList.remove("text-[red]");
+      const elements = document.querySelectorAll(".fadeanimation");
+      elements.forEach((element) => {
+            element.classList.remove("fade-in");
+      });
+      getlocation();
+});
+mylocation();
+span.addEventListener("click", mylocation);
+function mylocation() {
+      span.classList.add("text-[red]");
+      navigator.geolocation.getCurrentPosition(
+            (position) => {
+                  const { latitude, longitude } = position.coords;
+                  const REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+                  fetch(REVERSE_GEOCODING_URL)
+                        .then((res) => res.json())
+                        .then((data) => {
+                              console.log(data);
+                              const { name } = data[0];
+                              cityname = name.trim();
+                              getWeatherDetails(name, latitude, longitude);
+                        })
+                        .catch(() => {
+                              alert(
+                                    "An error occurred while fetching the city"
+                              );
+                        });
+            },
+            (error) => {
+                  if (error.code === error.PERMISSION_DENIED)
+                        alert(
+                              "Location permission denied. Please grant access"
+                        );
+            }
+      );
+}
 function convertToDate(dateInput, index) {
       const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
       if (!dateRegex.test(dateInput)) {
@@ -70,7 +112,8 @@ function convertToDate(dateInput, index) {
 const API_KEY = "811cbc5e69f7da32d785f312380a4be0";
 let textInput = document.getElementById("textInput");
 textInput.addEventListener("keypress", function (event) {
-      if (event.keyCode === 13) {
+      if (event.keyCode === 13 || flag != 0) {
+            span.classList.remove("text-[red]");
             const elements = document.querySelectorAll(".fadeanimation");
             elements.forEach((element) => {
                   element.classList.remove("fade-in");
@@ -106,7 +149,7 @@ function changeVideo() {
             "rain.mp4",
             "clearsky.mp4",
             "overcast.mp4",
-            "fewclouds_night.mp4",
+            "few_clouds_night.mp4",
             "nightrain.mp4",
             "clearsky_night.mp4",
             "nightovercast.mp4",
@@ -782,6 +825,10 @@ async function getWeatherDetails(name, lat, lon) {
                                     "linear-gradient(#626269,#cfcfd6)";
                         }
                   }
+                  fpage.classList.add("hide");
+                  sunbox.classList.remove("hide");
+                  content.classList.remove("hide");
+                  body.classList.remove("overflow-y-hidden");
             });
       } catch (error) {
             console.error("Error:", error);
