@@ -34,7 +34,7 @@ function mylocation() {
       navigator.geolocation.getCurrentPosition(
             (position) => {
                   const { latitude, longitude } = position.coords;
-                  const REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
+                  const REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
                   fetch(REVERSE_GEOCODING_URL)
                         .then((res) => res.json())
                         .then((data) => {
@@ -127,7 +127,7 @@ function getlocation() {
       console.log(cityname);
       if (!cityname) return;
       adjustcitylength();
-      const GEOCODING_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=1&appid=${API_KEY}`;
+      const GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=1&appid=${API_KEY}`;
       fetch(GEOCODING_API_URL)
             .then((res) => res.json())
             .then((data) => {
@@ -420,7 +420,7 @@ async function getWeatherDetails(name, lat, lon) {
             const timestamp = Math.floor(Date.now() / 1000);
 
             // First API call
-            const timeZoneUrl = `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`;
+            const timeZoneUrl = `https://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`;
             const timeZoneResponse = await fetch(timeZoneUrl);
             const timeZoneData = await timeZoneResponse.json();
 
@@ -541,7 +541,7 @@ async function getWeatherDetails(name, lat, lon) {
             }
 
             // Third API call
-            const weatherUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
             const weatherResponse = await fetch(weatherUrl);
             const weatherData = await weatherResponse.json();
 
